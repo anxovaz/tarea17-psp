@@ -1,8 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class RecorrerTexto {
     public String texto;
     public char caracter;

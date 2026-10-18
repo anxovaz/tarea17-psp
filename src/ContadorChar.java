@@ -1,8 +1,11 @@
 public class ContadorChar {
     private int contador = 0;
+    private final Object lock = new Object();
 
-    synchronized void incrementar(){
-        this.contador += 1;
+    public void incrementar(){
+        synchronized (lock) {
+            this.contador += 1;
+        }
     }
 
     public int getContador(){
