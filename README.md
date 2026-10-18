@@ -7,3 +7,8 @@
 ## Asignatura
 
 - PSP - 2DAM
+
+## Bibliografía
+
+- Geeksforgeeks - FileInputStream Java
+  https://www.geeksforgeeks.org/java/java-fileinputstream-read-method-with-examples/
