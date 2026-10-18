@@ -40,7 +40,7 @@ public class ContadorChar {
 
 ```
 
-También se podría hacer un `cynchronized` a nivel del método y funcionaría igual para este caso.
+También se podría hacer un `synchronized` a nivel del método y funcionaría igual para este caso.
 
 ```java
 //se elimina el objeto candado
