@@ -24,24 +24,26 @@ class Main{
         System.out.println("=====");
 
         System.out.println("Introduce caracter para r1:");
-        RecorrerTexto r1 = new RecorrerTexto(sc.next().charAt(0), texto);
+        RecorrerTexto r1 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread1 = new Thread(() -> r1.contarCaracter(contadorGlobal));
 
         System.out.println("Introduce caracter para r2:");
-        RecorrerTexto r2 = new RecorrerTexto(sc.next().charAt(0), texto);
+        RecorrerTexto r2 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread2 = new Thread(() -> r2.contarCaracter(contadorGlobal));
 
         System.out.println("Introduce caracter para r3:");
-        RecorrerTexto r3 = new RecorrerTexto(sc.next().charAt(0), texto);
+        RecorrerTexto r3 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread3 = new Thread(() -> r3.contarCaracter(contadorGlobal));
 
         System.out.println("Introduce caracter para r4:");
-        RecorrerTexto r4 = new RecorrerTexto(sc.next().charAt(0), texto);
+        RecorrerTexto r4 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread4 = new Thread(() -> r4.contarCaracter(contadorGlobal));
 
         System.out.println("Introduce caracter para r5:");
-        RecorrerTexto r5 = new RecorrerTexto(sc.next().charAt(0), texto);
+        RecorrerTexto r5 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread5 = new Thread(() -> r5.contarCaracter(contadorGlobal));
+
+        sc.close();
 
         System.out.println("Arrancando los procesos...");
         thread1.start();
@@ -65,14 +67,14 @@ class Main{
         System.out.println("===RESULTADOS====");
 
         System.out.println("Contador global: " + contadorGlobal.getContador());
-        System.out.println("r1: " + r1.contadorLocal.getContador());
-        System.out.println("r2: " + r2.contadorLocal.getContador());
-        System.out.println("r3: " + r3.contadorLocal.getContador());
-        System.out.println("r4: " + r4.contadorLocal.getContador());
-        System.out.println("r5: " + r5.contadorLocal.getContador());
+        System.out.println(r1.caracter + ": " + r1.contadorLocal.getContador());
+        System.out.println(r2.caracter + ": " + r2.contadorLocal.getContador());
+        System.out.println(r3.caracter + ": " + r3.contadorLocal.getContador());
+        System.out.println(r4.caracter + ": " + r4.contadorLocal.getContador());
+        System.out.println(r5.caracter + ": " + r5.contadorLocal.getContador());
 
     }
-    public static String devolverTexto(File file) {
+    private static String devolverTexto(File file) {
         String texto = "";
         try(FileInputStream fis = new FileInputStream(file)){
             int i = 0;
@@ -83,6 +85,29 @@ class Main{
             return texto;
         }catch (IOException e){
             throw new RuntimeException(e);
+        }
+    }
+
+    private static char validarConsonante(Scanner sc){
+        char[] vocales = {'a', 'e', 'i', 'o', 'u'};
+        while(true) {
+            String vocalUsuario = sc.next().toLowerCase();
+            boolean esConsonante = true;
+            if (vocalUsuario.length() != 1) {
+                System.out.println("Valor incorrecto, por favor introduzca una consonante");
+                //no hace falta indicar que esConsonante = false porque vuelve al principio del while y le pide otra letra
+                continue;
+            }
+            for (char vocal : vocales) {
+                if (vocal == vocalUsuario.charAt(0)) {
+                    System.out.println("Valor incorrecto, por favor introduzca una consonante");
+                    esConsonante = false;
+                    break;
+                }
+            }
+            if(esConsonante) {
+                return vocalUsuario.charAt(0);
+            }
         }
     }
 }
