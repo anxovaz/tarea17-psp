@@ -59,7 +59,7 @@ public class RecorrerTexto {
     public char caracter;
     public ContadorChar contadorLocal = new ContadorChar();
     public RecorrerTexto(char c, String texto){
-        this.texto = texto.toLowerCase();
+        this.texto = texto;
         this.caracter = c;
     }
     public void contarCaracter(ContadorChar cGlobal){
