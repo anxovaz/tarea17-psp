@@ -82,7 +82,7 @@ class Main{
                 texto = texto + ((char) i);
 
             }
-            return texto;
+            return texto.toLowerCase();
         }catch (IOException e){
             throw new RuntimeException(e);
         }
