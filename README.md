@@ -198,6 +198,41 @@ Vuelvo a ejecutar y se puede ver que el contador global es incorrecto porque los
 
 ![ejec-2](./imgs/ejec2.png)
 
+## Problemas encontrados
+
+### Validación de consonantes
+
+Me dio problemas el scanner para cerrarlo en el método `validarConsonante` del `Main` para solucionarlo decidí que ese método recogiese y reutilizase el `scanner` del método `main`.
+
+```java
+private static char validarConsonante(Scanner sc){
+        char[] vocales = {'a', 'e', 'i', 'o', 'u'};
+        while(true) {
+            String vocalUsuario = sc.next().toLowerCase();
+            boolean esConsonante = true;
+            if (vocalUsuario.length() != 1) {
+                System.out.println("Valor incorrecto, por favor introduzca una consonante");
+                //no hace falta indicar que esConsonante = false porque vuelve al principio del while y le pide otra letra
+                continue;
+            }
+            for (char vocal : vocales) {
+                if (vocal == vocalUsuario.charAt(0)) {
+                    System.out.println("Valor incorrecto, por favor introduzca una consonante");
+                    esConsonante = false;
+                    break;
+                }
+            }
+            if(esConsonante) {
+                return vocalUsuario.charAt(0);
+            }
+        }
+    }
+```
+
+### Problemas con mayúsculas y minúsculas
+
+Tuve problemas con las mayúsculas y minúsculas de los textos ya que `"A" != "a"`, así que usé el método `toLowerCase()` de `String`.
+
 ## Bibliografía
 
 - Geeksforgeeks - FileInputStream Java
