@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 class Main{
@@ -16,6 +17,7 @@ class Main{
         if (opcion.toLowerCase().compareTo("p") == 0){
             System.out.println("Introduce texto (se multiplicará por " + numMultiplicacionesTexto + ")");
             texto = sc.next().repeat(numMultiplicacionesTexto);
+            texto = texto.toLowerCase();
         }else{ //asumo que quiere usar el de texto.txt
             System.out.println("Usando el texto del fichero (multiplicado por )" + numMultiplicacionesTexto + ")");
             texto = devolverTexto(new File("./ficheros/texto.txt")).repeat(2000);
@@ -82,7 +84,7 @@ class Main{
                 texto = texto + ((char) i);
 
             }
-            return texto;
+            return texto.toLowerCase();
         }catch (IOException e){
             throw new RuntimeException(e);
         }
