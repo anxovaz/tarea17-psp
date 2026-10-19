@@ -1,10 +1,17 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Clase main
+ * @author anxo
+ */
 class Main{
+    /**
+     * Método main que sirve como lanador
+     * @param args
+     */
     public static void main(String[] args){
         int numMultiplicacionesTexto = 2000;
         String texto = "";
@@ -12,12 +19,12 @@ class Main{
         Scanner sc = new Scanner(System.in);
         sc.useDelimiter("\n");
 
+        //leer de texto propio o archivo
         System.out.println("¿Deseas usar un texto propio (p) o quieres usar el del archivo ficheros/texto.txt (a)?");
         String opcion = sc.next();
         if (opcion.toLowerCase().compareTo("p") == 0){
             System.out.println("Introduce texto (se multiplicará por " + numMultiplicacionesTexto + ")");
             texto = sc.next().repeat(numMultiplicacionesTexto);
-            texto = texto.toLowerCase();
         }else{ //asumo que quiere usar el de texto.txt
             System.out.println("Usando el texto del fichero (multiplicado por )" + numMultiplicacionesTexto + ")");
             texto = devolverTexto(new File("./ficheros/texto.txt")).repeat(2000);
@@ -25,6 +32,7 @@ class Main{
 
         System.out.println("=====");
 
+        //Creación de hilos
         System.out.println("Introduce caracter para r1:");
         RecorrerTexto r1 = new RecorrerTexto(validarConsonante(sc), texto);
         Thread thread1 = new Thread(() -> r1.contarCaracter(contadorGlobal));
@@ -47,6 +55,7 @@ class Main{
 
         sc.close();
 
+        //start de los hilos
         System.out.println("Arrancando los procesos...");
         thread1.start();
         thread2.start();
@@ -54,7 +63,7 @@ class Main{
         thread4.start();
         thread5.start();
 
-
+        //espero a que terminen los hilos
         try {
             thread1.join();
             thread2.join();
@@ -76,6 +85,12 @@ class Main{
         System.out.println(r5.caracter + ": " + r5.contadorLocal.getContador());
 
     }
+
+    /**
+     * Método que devuelve el texto de un archivo en minúsculas
+     * @param file
+     * @return
+     */
     private static String devolverTexto(File file) {
         String texto = "";
         try(FileInputStream fis = new FileInputStream(file)){
@@ -90,6 +105,11 @@ class Main{
         }
     }
 
+    /**
+     * Método que valida y devuelve consonantes
+     * @param sc
+     * @return
+     */
     private static char validarConsonante(Scanner sc){
         char[] vocales = {'a', 'e', 'i', 'o', 'u'};
         while(true) {
