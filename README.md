@@ -14,13 +14,13 @@
 
 - `ficheros/` -> lugar del texto a recorrer
 
-- `ContadorChar` -> Clase que sirve como contador tanto global como independiente (de cada caracter)
+- `ContadorChar` -> Clase que sirve como contador tanto global como independiente (de cada carácter)
 
-- `RecorrerTexto` -> Clase encargada en recorrer letra por letra el texto
+- `RecorrerTexto` -> Clase encargada de recorrer letra por letra el texto
 
 ## Clase `ContadorChar`
 
-Esta clase contiene un `lock` a nivel de Objeto en su método `incrementar` que restringe su uso a los hilos que intenten acceder a esa sección del método **de la misma instancia**, es decir si dos hilos intentar incrementar el contador de la mismma instancia los va a restringir (esperar a que uno termine para incrementar el otro), pero si dos hilos intentan usar ese método de **dos instancias distintas** no se bloquearan. En caso del contador global se restringuirá el acceso a los 5 hilos.
+Esta clase contiene un `lock` a nivel de Objeto en su método `incrementar` que restringe su uso a los hilos que intenten acceder a esa sección del método **de la misma instancia**, es decir si dos hilos intentar incrementar el contador de la misma instancia los va a restringir (esperar a que uno termine para incrementar el otro), pero si dos hilos intentan usar ese método de **dos instancias distintas** no se bloquearán. En caso del contador global se restringirá el acceso a los 5 hilos.
 
 ```java
 public class ContadorChar {
@@ -51,7 +51,7 @@ synchronized public void incrementar(){
 
 ## Clase `RecorrerTexto`
 
-Esta clase contiene un constructor y un método que recorre el texto caracter a carater y aumenta el contador local.
+Esta clase contiene un constructor y un método que recorre el texto carácter a caráter y aumenta el contador local.
 
 ````java
 public class RecorrerTexto {
@@ -75,9 +75,9 @@ public class RecorrerTexto {
 
 ## Clase `Main`
 
-Esta clase contiene el método `main` que actua como lanzador del programa, adicionalmente también tiene 2 métodos extra, uno para leer el texto de un archivo y otro que valida que el usuario introduce una consonante.
+Esta clase contiene el método `main` que actúa como lanzador del programa, adicionalmente también tiene 2 métodos extra, uno para leer el texto de un archivo y otro que valida que el usuario introduce una consonante.
 
-Primero se le pide al usuario is quiere introducir el mismo un texto o quiere usar el del archivo `ficheros/texto.txt`:
+Primero se le pide al usuario si quiere introducir él mismo un texto o quiere usar el del archivo `ficheros/texto.txt`:
 
 ````java
 int numMultiplicacionesTexto = 2000;
@@ -144,11 +144,11 @@ try {
     thread5.join();
 
 }catch (InterruptedException e){
-    hrow new RuntimeException(e);
+    throw new RuntimeException(e);
 }
 ````
 
-Muesto los resultados:
+Muestro los resultados:
 
 ```java
 System.out.println("===RESULTADOS====");
